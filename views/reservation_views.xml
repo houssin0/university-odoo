@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="school_reservation_tree" model="ir.ui.view">
+        <field name="name">school.reservation.tree.view</field>
+        <field name="model">school.reservation</field>
+        <field name="arch" type="xml">
+            <tree string="Réservation">
+                <field name="name"/>
+                <field name="faculty_id" required="1"/>
+                <field name="classroom_id" required="1"/>
+                <field name="start_datetime" required="1"/>
+                <field name="end_datetime" required="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="school_reservation_form_view" model="ir.ui.view">
+        <field name="name">school.reservation.form.view</field>
+        <field name="model">school.reservation</field>
+        <field name="arch" type="xml">
+            <form string="Réservation">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="faculty_id" widget="many2one_tags" required="1"/>
+                            <field name="classroom_id" required="1"/>
+                            <field name="classroom_ids" widget="many2many_tags" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="start_datetime" required="1"/>
+                            <field name="end_datetime" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_reservation" model="ir.actions.act_window">
+        <field name="name">Réservation</field>
+        <field name="res_model">school.reservation</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créer votre Réservation Maintenant
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="school_reservation" name="Réservation" parent="school_root" action="action_reservation" sequence="7"/>
+
+</odoo>

@@ -1,0 +1,1 @@
+# design and production of a module for booking rooms and managing absences on odoo

@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="school_subject_tree">
+            <field name="name">school_subject_tree_view</field>
+            <field name="model">school.subject</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="element_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+        <record id="subject_form" model="ir.ui.view">
+            <field name="name">subject.form</field>
+            <field name="model">school.subject</field>
+            <field name="arch" type="xml">
+                <form string="Modules">
+                    <sheet>
+                        <group>
+                            <field name="name" style="width:50%;"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="element_ids" style="width:128%;"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_subject" model="ir.actions.act_window">
+            <field name="name">Modules</field>
+            <field name="res_model">school.subject</field>
+            <field name="view_mode">tree,form,pivot</field>
+            <!--            <field name="context">{"search_default_male":1}</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                Créer le premier module Maintenant
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="school_subject" name="Modules" parent="school_root" action="action_subject" sequence="4"/>
+    </data>
+</odoo>
